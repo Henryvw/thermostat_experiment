@@ -7,6 +7,9 @@ module Api
       def show
         @reading = Reading.find(params[:id])
       end
+
+      def return_scientific_measurements
+      end
     end
   end
 end
