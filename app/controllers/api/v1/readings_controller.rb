@@ -2,13 +2,25 @@ module Api
   module V1
     class ReadingsController < ActionController::API
       def create
+        new_reading = Reading.new(reading_params)
+
+        if new_reading.save
+          head :created
+        else
+          render json: { errors: new_reading.errors }, status: :bad_request
+        end
       end
 
       def show
         @reading = Reading.find(params[:id])
       end
 
-      def return_scientific_measurements
+      private
+      def reading_params
+        params.permit(:thermostat_id,
+                      :temperature,
+                      :humidity,
+                      :battery_charge)
       end
     end
   end
