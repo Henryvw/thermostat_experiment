@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ReadingsController < ActionController::API
+    class ReadingsController < Api::V1::BaseController
       def create
         new_reading = Reading.new(reading_params)
 
