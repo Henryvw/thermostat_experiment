@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_09_095148) do
+ActiveRecord::Schema.define(version: 2020_04_09_095903) do
 
   create_table "readings", force: :cascade do |t|
     t.integer "thermostat_id", null: false
-    t.integer "sequential_number"
+    t.integer "sequential_id"
     t.float "temperature"
     t.float "humidity"
     t.float "battery_charge"

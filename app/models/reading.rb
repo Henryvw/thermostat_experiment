@@ -1,6 +1,6 @@
 class Reading < ApplicationRecord
   belongs_to :thermostat
-  #acts_as_sequenced scope: :thermostat_id
+  acts_as_sequenced scope: :thermostat_id
 
   def self.time_frame(start, stop)
     Reading.where(created_at: start..stop)
