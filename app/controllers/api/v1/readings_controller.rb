@@ -2,12 +2,10 @@ module Api
   module V1
     class ReadingsController < Api::V1::BaseController
       def create
-        new_reading = Reading.new(reading_params)
-
-        if new_reading.save
-          head :created
+        if ReadingWorker.perform_async(reading_params.to_h)
+          head :accepted
         else
-          render json: { errors: new_reading.errors }, status: :bad_request
+          head :bad_request
         end
       end
 
