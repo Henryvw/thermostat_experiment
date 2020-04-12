@@ -12,4 +12,3 @@ RSpec.describe 'Base API Authentication', type: :request do
     end
   end
 end
-
