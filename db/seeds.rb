@@ -18,7 +18,7 @@ when "development"
   end
 
   100.times do |index|
-    reading = Reading.create(thermostat_id: Random.rand(1..9),
+    reading = Reading.create(thermostat_id: Random.rand(Thermostat.first.id..Thermostat.last.id),
                              temperature: Random.rand(-20..50),
                              humidity: Random.rand(0..100),
                              battery_charge: Random.rand(0..100),
