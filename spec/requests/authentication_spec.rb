@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'Base API Authentication', type: :request do
   context 'when the user provides a valid API token' do
     let(:thermostat) { FactoryBot.create(:thermostat, :reading_here) }
@@ -6,7 +8,7 @@ RSpec.describe 'Base API Authentication', type: :request do
       household_token = thermostat.household_token
 
       get "/api/v1/readings/#{reading.id}", headers: {"HTTP_AUTHORIZATION": "Token token=#{household_token}", "ACCEPT": "application/json"}
-      
+
       expect(response).to be_successful
       expect(response.body).to include(reading.to_json)
     end
@@ -27,7 +29,7 @@ RSpec.describe 'Base API Authentication', type: :request do
       reading = thermostat.readings.first
       household_token = thermostat.household_token
 
-post "/api/v1/readings/?thermostat_id=#{thermostat.id}&humidity=100&battery_charge=100&temperature=100", headers: {"HTTP_AUTHORIZATION": "Token token=#{household_token}", "ACCEPT": "application/json"}
+      post "/api/v1/readings/?thermostat_id=#{thermostat.id}&humidity=100&battery_charge=100&temperature=100", headers: {"HTTP_AUTHORIZATION": "Token token=#{household_token}", "ACCEPT": "application/json"}
 
       expect(response).to have_http_status :accepted
     end
